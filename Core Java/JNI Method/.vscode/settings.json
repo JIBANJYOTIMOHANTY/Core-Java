@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "ratio": "cpp",
+        "valarray": "cpp",
+        "random": "cpp"
+    }
+}

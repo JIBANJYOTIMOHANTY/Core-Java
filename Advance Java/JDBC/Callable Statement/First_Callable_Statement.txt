@@ -1,0 +1,54 @@
+// step - 1
+import java.sql.*;
+import java.util.*;
+public class First
+{
+    public static void main(String[] args) 
+    {
+        Connection cn = null;
+        CallableStatement st = null;
+        Scanner ss = new Scanner(System.in);
+        System.out.println("Enter a number : ");
+        int num = ss.nextInt();
+        try 
+        {
+            // step-2
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // step-3
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jt","root","Jiban@123");
+            // step-4
+            String query = "{call sai_app1(?,?)}";
+            st = cn.prepareCall(query);
+            // step-5
+            // Set the IN parameter
+            st.setInt(1,num);
+            // step-6
+            //note : Every OUT parameter must be register with JDBC type all JDBC datatypes are the beidge between underlying database software datatypes (ORACLE, MYSQL) software datatypes and java datatypes. They help the JDBC driver to convert database software generated result into Java understandable format while working with stored procedures and functions
+            // Register the out parameter so JDBC API understand it
+            st.registerOutParameter(2, Types.INTEGER);
+            // step - 7
+            // execute the query
+            st.execute();
+            //step-8
+            // Retrive the result from database server.
+            int result = st.getInt(2);
+            System.out.println("Cube of "+num+" is : "+result);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                st.close();
+                cn.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+}

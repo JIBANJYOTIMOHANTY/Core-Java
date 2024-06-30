@@ -1,0 +1,1 @@
+insert into jt_data values(104,'Ajay Kumar')

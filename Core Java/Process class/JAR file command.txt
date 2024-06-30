@@ -1,0 +1,4 @@
+command : jar -cvmf "filename.txt" "filename.jar" *.class
+
+"filename.txt" ---> The java class file
+"filename.jar"   ---> The jar file name that you want to name with.
