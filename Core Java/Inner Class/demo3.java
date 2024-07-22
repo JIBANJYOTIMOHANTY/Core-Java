@@ -2,7 +2,7 @@ public abstract class demo3
 {
 	int data;
 	public abstract void setData(int data);
-	public abstract void getData();
+	public abstract int getData();
 	void call()
 	{
 		System.out.println("Magic of Java");
